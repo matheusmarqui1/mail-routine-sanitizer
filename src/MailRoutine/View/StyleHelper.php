@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use icanhazstring\SymfonyConsoleSpinner\SpinnerProgress;
 
 class StyleHelper extends SymfonyStyle{
     private static $inputInterface;
@@ -52,6 +53,10 @@ class StyleHelper extends SymfonyStyle{
         }
 
         return $progressBar;
+    }
+
+    public function createSpinnerProgress(int $max = 0) : SpinnerProgress {
+        return new SpinnerProgress(self::$outputInterface, $max);
     }
 }
 ?>

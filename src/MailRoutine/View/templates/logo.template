@@ -6,5 +6,5 @@
             | |  | | (_| | | | | |\ \ (_) | |_| | |_| | | | |  __/
             \_|  |_/\__,_|_|_| \_| \_\___/ \__,_|\__|_|_| |_|\___|
 
-            <version>Created By Matheus Marqui - version 1.0</>            
+            <version>Created By Matheus Marqui - version {{mr.version}}</>            
 </>
