@@ -1,11 +1,10 @@
 #!/usr/bin/env php
 <?php
-	require_once __DIR__ . '/../vendor/autoload.php';
+	const MAILROUTINE_BASE_PATH = __DIR__ . '/../';
+	require_once MAILROUTINE_BASE_PATH . 'vendor/autoload.php';
 
 	use Symfony\Component\Console\Application;
 	use MailRoutine\App\MailRoutine;
-	
-	const MAILROUTINE_BASE_PATH = __DIR__ . '/../';
 
 	$app = new Application();
 	$app->add(new MailRoutine());

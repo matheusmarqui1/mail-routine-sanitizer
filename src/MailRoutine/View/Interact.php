@@ -36,7 +36,7 @@ class Interact{
 
     public function verifyInputsAndAskForRequiredOnes() {
         foreach(Configuration::getInstance()->getOptions() as $option) {
-           list($name, $alias, $inputRequirement, $description, $defaultValue) = $option;
+           list($name,,$inputRequirement,$description,) = $option;
            $value = $this->inputInterface->getOption($name);
            if( $inputRequirement === InputOption::VALUE_REQUIRED && (!$value || $value === '' || $value === null) )
                 $this->inputInterface->setOption($name, $this->askForRequiredInput($name, $description));
