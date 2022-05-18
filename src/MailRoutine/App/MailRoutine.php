@@ -25,7 +25,7 @@ class MailRoutine extends Command
     }
 
     protected function interact(InputInterface $input, OutputInterface $output) {
-        $interact = new Interact(new StyleHelper($output, $input), $input);
+        $interact = new Interact($input, $output);
         $interact->verifyInputsAndAskForRequiredOnes();
     }
 

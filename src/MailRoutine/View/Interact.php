@@ -6,16 +6,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use MailRoutine\Util\KeyValue;
 use MailRoutine\Util\TextParser;
+use Symfony\Component\Console\Output\Output;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class Interact{
-    private StyleHelper $styleHelper;
     private InputInterface $inputInterface;
+    private StyleHelper $styleHelper;
 
-    public function __construct(StyleHelper $styleHelper, InputInterface $inputInterface)
+    public function __construct(InputInterface $inputInterface, OutputInterface $outputInterface)
     {
-        $this->styleHelper = $styleHelper;
         $this->inputInterface = $inputInterface;
-
+        $this->styleHelper =  new StyleHelper($outputInterface, $inputInterface);
         $this->init();
     }
 
@@ -26,10 +27,6 @@ class Interact{
                 KeyValue::builder()->key('mr.version')->value('1.0.0')->build()
             )
         );
-    }
-
-    private function isValidInput() {
-
     }
 
     private function askForRequiredInput($name, $description) {
