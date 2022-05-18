@@ -23,7 +23,7 @@ class Configuration{
         return self::$instance === null ? new self : self::$instance;
     }
 
-    public static function getResource(string $resourceFolder, ?string $resourceFilename = '') {
+    public static function getResourcePath(string $resourceFolder, ?string $resourceFilename = '') {
         $possibleDir = MAILROUTINE_BASE_PATH . '/src/MailRoutine/' . $resourceFolder . '/';
         if( !is_dir($possibleDir) || 
             ( $resourceFilename != '' && !is_file($possibleDir . $resourceFilename) ) 
