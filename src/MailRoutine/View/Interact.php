@@ -16,7 +16,7 @@ class Interact{
     public function __construct(InputInterface $inputInterface, OutputInterface $outputInterface)
     {
         $this->inputInterface = $inputInterface;
-        $this->styleHelper =  new StyleHelper($outputInterface, $inputInterface);
+        $this->styleHelper = new StyleHelper($inputInterface, $outputInterface);
         $this->init();
     }
 

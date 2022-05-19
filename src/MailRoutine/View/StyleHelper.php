@@ -15,7 +15,7 @@ class StyleHelper extends SymfonyStyle{
     private static $inputInterface;
     private static $outputInterface;
 
-    public function __construct(OutputInterface $outputInterface, InputInterface $inputInterface) {
+    public function __construct(InputInterface $inputInterface, OutputInterface $outputInterface) {
         self::$inputInterface = $inputInterface;
         self::$outputInterface = $outputInterface;
 
