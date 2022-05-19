@@ -11,8 +11,8 @@ use \Symfony\Component\Console\Input\InputOption;
 use InvalidArgumentException;
 
 class Configuration{
-    private static $environmentVars;
-    private static $instance;
+    private static Dotenv $environmentVars;
+    private static Configuration $instance;
 
     private function __construct() {
         self::$environmentVars = Dotenv::createImmutable(MAILROUTINE_BASE_PATH);
