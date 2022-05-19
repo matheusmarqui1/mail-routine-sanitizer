@@ -11,8 +11,8 @@ use \Symfony\Component\Console\Input\InputOption;
 use InvalidArgumentException;
 
 class Configuration{
-    private static Dotenv $environmentVars;
-    private static Configuration $instance;
+    private static $environmentVars;
+    private static $instance;
 
     private function __construct() {
         self::$environmentVars = Dotenv::createImmutable(MAILROUTINE_BASE_PATH);
@@ -23,7 +23,7 @@ class Configuration{
         return self::$instance === null ? new self : self::$instance;
     }
 
-    public static function getResourcePath(string $resourceFolder, ?string $resourceFilename = '') {
+    public static function getResourcePath(string $resourceFolder, ?string $resourceFilename = '') : string {
         $possibleDir = MAILROUTINE_BASE_PATH . '/src/MailRoutine/' . $resourceFolder . '/';
         if( !is_dir($possibleDir) || 
             ( $resourceFilename != '' && !is_file($possibleDir . $resourceFilename) ) 
