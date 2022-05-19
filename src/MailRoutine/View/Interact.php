@@ -22,7 +22,7 @@ class Interact{
 
     private function init() {
         $this->styleHelper->text(
-            TextParser::parse(
+            TextParser::replace(
                 file_get_contents(Configuration::getResourcePath('View/templates', 'logo.template')),
                 KeyValue::builder()->key('mr.version')->value('1.0.0')->build()
             )

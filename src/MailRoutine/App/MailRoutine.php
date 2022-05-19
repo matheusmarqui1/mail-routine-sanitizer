@@ -32,7 +32,8 @@ class MailRoutine extends Command
 
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $sanitizer = new Sanitizer($input, $output);
-        return $sanitizer->begin();
+        (new Sanitizer($input, $output))->begin();
+        
+        return Command::SUCCESS;
     }
 }

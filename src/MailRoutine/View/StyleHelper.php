@@ -27,10 +27,10 @@ class StyleHelper extends SymfonyStyle{
     private function configureCustomStyle() {
         self::$outputInterface
             ->getFormatter()
-                ->setStyle('logo', new OutputFormatterStyle('#dd4baa', null, ['bold', 'blink']));
+                ->setStyle('logo', new OutputFormatterStyle('#dd4baa', null, ['bold']));
         self::$outputInterface
             ->getFormatter()
-                ->setStyle('version', new OutputFormatterStyle('#ebc034', null, ['bold']));
+                ->setStyle('version', new OutputFormatterStyle('#ebc034', null, ['bold', 'blink']));
     }
 
     public static function getIO() {
@@ -55,8 +55,17 @@ class StyleHelper extends SymfonyStyle{
         return $progressBar;
     }
 
-    public function createSpinnerProgress(int $max = 0) : SpinnerProgress {
-        return new SpinnerProgress(self::$outputInterface, $max);
+    public function createSpinnerProgress(int $max = 0, ?string $message) : SpinnerProgress {
+        $spinnerProgress = new SpinnerProgress(self::$outputInterface, $max);
+
+        if($message) $spinnerProgress->setMessage($message);
+
+
+        return $spinnerProgress;
+    }
+
+    public function getOptionFromInput(string $optionName) {
+        return self::$inputInterface->getOption($optionName);
     }
 }
 ?>
