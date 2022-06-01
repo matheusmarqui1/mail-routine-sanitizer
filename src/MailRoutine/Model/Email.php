@@ -9,13 +9,7 @@ class Email{
 
     public function __construct(string $email)
     {
-        $this->setupEmailParts($email);
-    }
-
-    private function setupEmailParts(string $email) : void {
-        $emailParts =  explode('@', $email);
-        $this->setUsername($emailParts[0]);
-        $this->setDomain($emailParts[1]);
+        list($this->username, $this->domain) = explode('@', $email);
     }
 
     public function setUsername(string $username) : void {
