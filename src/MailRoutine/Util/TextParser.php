@@ -11,7 +11,7 @@ class TextParser{
         return $newText; 
     }
 
-    public static function toBoolean(?string $value) : bool {
+    public static function toBoolean($value) : bool {
         return filter_var($value, FILTER_VALIDATE_BOOLEAN);
     }
 }

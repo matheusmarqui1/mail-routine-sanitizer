@@ -11,7 +11,7 @@ use Symfony\Component\Mime\Part\TextPart;
 
 class Sanitizer{
     
-    private static StyleHelper $sh;
+    public static StyleHelper $sh;
     
     private static $lines = []; 
 
@@ -30,9 +30,16 @@ class Sanitizer{
         /*
             cases: --ssh=true (boolean true), --ssh (null) => should use
         */
-        $shoudUseSSH = TextParser::toBoolean(self::$sh->getOptionFromInput('ssh'));
-        if($shoudUseSSH || $shoudUseSSH === null) {
-            if((new SSH)->getSmtpLogLines()) self::$sh->success('We\'re connected!');
+        $stringShouldUseSSH = self::$sh->getOptionFromInput('ssh');
+        $shoudUseSSH = $stringShouldUseSSH === null || $stringShouldUseSSH == 'true';
+
+        if($shoudUseSSH) {
+            try{
+                self::$lines = (new SSH)->getSmtpLogLines();
+                self::$sh->text(count(self::$lines));
+            }catch(\Exception $e) {
+                self::$sh->error($e->getMessage());
+            }
         }
         return Command::SUCCESS;
     }

@@ -21,6 +21,15 @@ class SSHConfiguration{
         return self::$cgf->getEnvironmentVar('SSH_AUTH_METHOD');
     }
 
+    private static function getSshOverSsh() : object {
+        self::$sshConfig->sshOverSsh = false;
+        if(self::$cgf->getEnvironmentVar('SSH_OVER_SSH') == 'true') {
+            self::$sshConfig->sshOverSsh = true;
+            self::$sshConfig->sshOverSshHost = self::$cgf->getEnvironmentVar('SSH_OVER_SSH_HOST');
+        }
+        return self::$sshConfig;
+    }
+
     private static function getRSAConfig() : object {
         self::$sshConfig->rsa_key = posix_getpwuid(posix_geteuid())['dir'] . '/.ssh/id_rsa';
         return self::$sshConfig;
@@ -41,8 +50,10 @@ class SSHConfiguration{
             'method' => self::$cgf->getEnvironmentVar('SSH_AUTH_METHOD')
         ); 
 
-        return self::getAuthMethod() === 'RSA_KEY' ?
+        self::getAuthMethod() === 'RSA_KEY' ?
             self::getRSAConfig() : self::getLoginConfig();
+
+        return self::getSshOverSsh();
     }
 }
 ?>

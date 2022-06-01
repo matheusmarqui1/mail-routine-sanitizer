@@ -26,15 +26,22 @@ class SpinnerProgress
         $this->progressBar->setBarCharacter('<fg=green;options=bold>✔</>');
         $this->progressBar->setFormat('%bar%  %message%');
         $this->progressBar->setBarWidth(1);
+        $this->progressBar->maxSecondsBetweenRedraws(0.02);
+        $this->progressBar->minSecondsBetweenRedraws(0.005);
         $this->progressBar->setRedrawFrequency(31);
 
         $this->step = 0;
     }
 
+    private function rand_color() {
+        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+    }
+
     public function advance(int $step = 1): void
     {
         $this->step += $step;
-        $this->progressBar->setProgressCharacter(self::CHARS[$this->step % 8]);
+        $color = $this->rand_color();
+        $this->progressBar->setProgressCharacter("<fg=$color>" . self::CHARS[$this->step % 8] . "</>");
         $this->progressBar->advance($step);
     }
 
