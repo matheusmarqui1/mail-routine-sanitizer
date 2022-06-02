@@ -59,8 +59,7 @@ class StyleHelper extends SymfonyStyle{
         $spinnerProgress = new SpinnerProgress(self::$outputInterface, $max);
 
         if($message) $spinnerProgress->setMessage($message);
-
-
+        
         return $spinnerProgress;
     }
 
